@@ -1,3 +1,4 @@
 <?php
-echo 'hello world';
+var_dump(014=="014");
+
 

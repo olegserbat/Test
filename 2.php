@@ -1,6 +1,6 @@
 <?php
 $str1 = 'mama';
-$str2 = 'mmaa';
+$str2 = 'mmaaa';
 function anagramm(string $str1, string $str2): bool
 {
     $str1Array = str_split($str1);

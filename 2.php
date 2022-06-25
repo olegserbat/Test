@@ -1,18 +1,24 @@
 <?php
-$str1='mama mila ramy';
-$str2='ramy alim amamd';
-function anagramm ($str1,$str2)
+$str1 = 'mama';
+$str2 = 'mmaa';
+function anagramm(string $str1, string $str2): bool
 {
-    $str1_array = str_split($str1);
-    $str2_array = str_split($str2);
-    sort($str1_array);
-    sort($str2_array);
-    $dif = array_diff_assoc($str1_array, $str2_array);
-    $count_str1 = (count($str1_array));
-    $count_str2 = (count($str2_array));
-    if ($count_str1 == $count_str2 && count($dif) == 0) {
-        echo 'строки являются анаграммами';
-    } else {
-        echo 'строки не являются анаграммами';
-    }
-} print anagramm($str1,$str2);
+    $str1Array = str_split($str1);
+    $str2Array = str_split($str2);
+    sort($str1Array);
+    sort($str2Array);
+    $diff = array_diff_assoc($str1Array, $str2Array);
+    return (count($str1Array) === count($str2Array) && count($diff) === 0);
+}
+
+//assert(anagramm($str1, $str2));
+assert(anagramm('mama', 'mmaa') === true, 'анаграмма');
+assert(anagramm('мама', 'ммаа') === true, 'анаграмма');
+assert(anagramm('maa', 'mmaa') ===false, 'анаграмма');
+assert(anagramm('avvv', 'aaav') === false, 'не является анаграммой, так как буквы отличаются');
+assert(anagramm('avvvv', 'aaav') === false, 'не является анаграммой, так как буквы отличаются');
+assert(anagramm('avvv', 'aaavv') === false, 'не является анаграммой, так как буквы отличаются');
+assert(anagramm('123', '321') === true, 'является анаграммой');
+assert(anagramm('123 test', '321 test') === true, 'является анаграммой');
+assert(anagramm('123 test', '321 test ') === false, 'не является анаграммой');
+assert(anagramm('test', 'fdff') === false, 'не является анаграммой, так как буквы отличаются');

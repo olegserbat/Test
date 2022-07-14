@@ -1,20 +1,20 @@
 <?php
-$str1='mama';
-$str2='amam';
-$anagram=function ($str1,$str2) {
-    $str1_array = str_split($str1);
-    sort($str1_array);
-    $str2_array = str_split($str2);
-    sort($str2_array);
-    $count_str1 = (count($str1_array));
-    $count_str2 = (count($str2_array));
-//var_dump(array_count_values($str1_array));
-    $sum=array_diff_assoc($str2_array, $str1_array);
-//var_dump($str2_array);
-    If ($count_str1=$count_str2 && $sum=0) {
-        echo 'маннограм';
-    } else {
-        echo 'не манограм';
+function partlist($arr): array
+{
+    $sum1[(count($arr) - 2)] = $arr[(count($arr) - 1)];
+    for ($j = (count($arr) - 3); $j >= 0; $j--) {
+        $sum1[$j] = $arr[$j + 1] . " " . $sum1[$j + 1];
+        $sum0[0] = $arr[0];
+        for ($i = 1; $i < (count($arr) - 1); $i++) {
+            $sum0[$i] = $sum0[$i - 1] . " " . $arr[$i];
+        }
+        $resultArray = [];
+        for ($k = 0; $k < (count($arr) - 1); $k++) {
+
+            $resultArray[$k] = [$sum0[$k], $sum1[$k]];
+        }
     }
-};
-print $anagram ($str1,$str2);
+    return (array)$resultArray;
+}
+
+var_dump(partlist(["i", "want", "drink", "one", "cup"]));

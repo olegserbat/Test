@@ -1,20 +1,29 @@
 <?php
-function partlist($arr): array
+function solution(string $s): int
 {
-    $sum1[(count($arr) - 2)] = $arr[(count($arr) - 1)];
-    for ($j = (count($arr) - 3); $j >= 0; $j--) {
-        $sum1[$j] = $arr[$j + 1] . " " . $sum1[$j + 1];
-        $sum0[0] = $arr[0];
-        for ($i = 1; $i < (count($arr) - 1); $i++) {
-            $sum0[$i] = $sum0[$i - 1] . " " . $arr[$i];
+    (int)$array = str_split($s);
+    $arrayReal = str_split($s);
+    (int)arsort($array);
+    $arrayBigKeys = array_keys($array, current($array));
+    $resultArray = [];
+    $a = [];
+    $result = 0;
+    for ($j = 0; $j < count($arrayBigKeys); $j++) {
+        $i = 0;
+        while ($i < 5) {
+            if (($arrayBigKeys[$j] + $i) < count($arrayReal)) {
+                $resultArray[$j][$i] = $arrayReal[$arrayBigKeys[$j] + $i];
+                $i++;
+            } else {
+                break;
+            }
         }
-        $resultArray = [];
-        for ($k = 0; $k < (count($arr) - 1); $k++) {
-
-            $resultArray[$k] = [$sum0[$k], $sum1[$k]];
-        }
-    }
-    return (array)$resultArray;
+        if (implode($resultArray[$j]) > $result) {
+            $result = implode ($resultArray[$j]);
+            $a = $resultArray[$j];
+        };
+    };
+    (int)$res = implode($a);
+    return $res;
 }
-
-var_dump(partlist(["i", "want", "drink", "one", "cup"]));
+var_dump( solution("999109999"));

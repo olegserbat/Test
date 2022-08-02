@@ -1,13 +1,20 @@
 <?php
-function duplicateCount($text) {
-        $result=0;
-    $text=strtolower($text);
-    $text=str_split($text);
-    $text=array_count_values($text);
-    foreach ($text as $value){
-        if ($value>1){
-            $result++;
+function moveZeros(array $items): array
+{
+    $arrayMoveZeros = [];
+    foreach ($items as $value) {
+        if($value===0.0) {
+            $value=0;
+            }
+        if ($value !== 0) {
+            $arrayMoveZeros[] = $value;
         }
     }
-    return $result;
+    $countZero = count($items) - count($arrayMoveZeros);
+    for ($i = 1; $i <= $countZero; $i++) {
+        $arrayMoveZeros[] = 0;
+    }
+    return $arrayMoveZeros;
 }
+
+var_dump(moveZeros([9,0.0,0,9,1,2,0,1,0,1,0.00,3,0,1,9,0,0,0,0,9]));
